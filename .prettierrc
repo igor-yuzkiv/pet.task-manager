@@ -1,0 +1,15 @@
+{
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "trailingComma": "es5",
+    "printWidth": 120,
+    "tabWidth": 4,
+    "plugins": ["prettier-plugin-tailwindcss", "@trivago/prettier-plugin-sort-imports"],
+    "importOrder": [
+        "^vue(.*)$"
+    ],
+    "importOrderSeparation": false,
+    "importOrderSortSpecifiers": true,
+    "importOrderCaseInsensitive": true
+}
