@@ -1,7 +1,7 @@
-import {defineConfig} from 'vite';
-import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue'
-import {fileURLToPath, URL} from 'node:url'
+import laravel from 'laravel-vite-plugin'
+import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
     plugins: [
@@ -11,11 +11,10 @@ export default defineConfig({
         }),
         vue(),
     ],
-    define: {'process.env': {}},
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('/resources/js', import.meta.url)),
         },
         extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
     },
-});
+})

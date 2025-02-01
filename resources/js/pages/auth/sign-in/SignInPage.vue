@@ -1,19 +1,24 @@
 <script setup lang="ts">
+import { AxiosError } from 'axios'
 import * as yup from 'yup'
+import { useRouter } from 'vue-router'
 import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
 import InputGroup from 'primevue/inputgroup'
 import InputGroupAddon from 'primevue/inputgroupaddon'
 import InputText from 'primevue/inputtext'
 import Message from 'primevue/message'
-import { useToast } from 'primevue/usetoast'
 import { Icon } from '@iconify/vue'
+import { AppRouters } from '@/app/router/app-router.ts'
 import { useForm } from '@/composables/useForm.ts'
-import * as types from './types.ts'
+import { useToast } from '@/composables/useToast.ts'
+import { login } from '@/entities/user/user.api.ts'
+import type { SignInForm } from '@/entities/user/user.types.ts'
 
 const toast = useToast()
+const router = useRouter()
 
-const form = useForm<types.SignInForm>({
+const form = useForm<SignInForm>({
     initialValues: {
         email: '',
         password: '',
@@ -23,14 +28,18 @@ const form = useForm<types.SignInForm>({
         email: yup.string().email().required().label('Email'),
         password: yup.string().required().label('Password'),
     }),
-    submit: async (values) => {
-        console.log('submit', values)
-        toast.add({
-            severity: 'error',
-            summary: 'Success',
-            detail: 'Invalid email or password',
-            life: 3000,
-        })
+    submit: async (data) => {
+        try {
+            await login(data)
+            await router.push({ name: AppRouters.home.name })
+        } catch (error) {
+            const message =
+                error instanceof AxiosError && error.response?.status === 401
+                    ? 'Invalid email or password'
+                    : 'Something went wrong. Please try again later'
+
+            toast.error(message)
+        }
     },
 })
 </script>

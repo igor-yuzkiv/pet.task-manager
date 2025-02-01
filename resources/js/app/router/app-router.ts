@@ -1,4 +1,5 @@
 import { defineAsyncComponent } from 'vue'
+import authMiddleware from '@/app/router/middleware/auth.middleware.ts'
 
 export const AppLayouts = {
     auth: defineAsyncComponent(() => import('@/layouts/auth/AuthLayout.vue')),
@@ -20,6 +21,7 @@ export const AppRouters = {
         component: () => import('@/pages/home/HomePage.vue'),
         meta: {
             layoutComponent: AppLayouts.default,
+            middleware: authMiddleware,
         },
     },
 }

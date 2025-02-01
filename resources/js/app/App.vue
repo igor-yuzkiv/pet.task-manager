@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import Toast from 'primevue/toast'
-import { AppLayouts } from '@/app/router/app-router.types.ts'
+import { AppLayouts } from '@/app/router/app-router.ts'
 
 const route = useRoute()
 console.log(route.meta)

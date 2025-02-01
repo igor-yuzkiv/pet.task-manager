@@ -3,3 +3,9 @@ export type SignInForm = {
     password: string
     remember: boolean
 }
+
+export type User = {
+    id: string
+    name: string
+    email: string
+}
