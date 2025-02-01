@@ -10,10 +10,10 @@ import InputText from 'primevue/inputtext'
 import Message from 'primevue/message'
 import { Icon } from '@iconify/vue'
 import { AppRouters } from '@/app/router/app-router.ts'
-import { useForm } from '@/composables/useForm.ts'
-import { useToast } from '@/composables/useToast.ts'
 import { login } from '@/entities/user/user.api.ts'
 import type { SignInForm } from '@/entities/user/user.types.ts'
+import { useForm } from '@/composables/useForm.ts'
+import { useToast } from '@/composables/useToast.ts'
 
 const toast = useToast()
 const router = useRouter()
