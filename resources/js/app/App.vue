@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const test =1 ;
+
 </script>
 
 <template>
@@ -8,6 +8,4 @@ const test =1 ;
     </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
