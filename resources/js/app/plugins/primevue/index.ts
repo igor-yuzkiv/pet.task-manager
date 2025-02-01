@@ -1,6 +1,7 @@
 import Aura from '@primevue/themes/aura'
-import PrimeVue from 'primevue/config'
 import type { App } from 'vue'
+import PrimeVue from 'primevue/config'
+import ToastService from 'primevue/toastservice'
 
 export default function (app: App) {
     app.use(PrimeVue, {
@@ -11,4 +12,6 @@ export default function (app: App) {
             },
         },
     })
+
+    app.use(ToastService)
 }

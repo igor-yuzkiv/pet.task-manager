@@ -1,9 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+import Toast from 'primevue/toast'
+import { AppLayouts } from '@/app/router/app-router.types.ts'
+
+const route = useRoute()
+console.log(route.meta)
+</script>
 
 <template>
-    <div class="min-h-screen w-full">
+    <Toast />
+    <component :is="route.meta?.layoutComponent ?? AppLayouts.default">
         <router-view />
-    </div>
+    </component>
 </template>
 
 <style scoped></style>
