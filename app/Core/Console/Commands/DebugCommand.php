@@ -2,9 +2,7 @@
 
 namespace App\Core\Console\Commands;
 
-use App\Domains\User\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
 
 class DebugCommand extends Command
 {
@@ -12,12 +10,5 @@ class DebugCommand extends Command
 
     protected $description = 'Command description';
 
-    public function handle(): void
-    {
-        User::create([
-            'email'    => 'iy@crmoz.com',
-            'name'     => 'Iy',
-            'password' => Hash::make('qwert123'),
-        ]);
-    }
+    public function handle(): void {}
 }
