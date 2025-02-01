@@ -1,8 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-    <div class="min-h-screen w-full">
-        <router-view />
+    <div>
+        <h1>Home Page</h1>
     </div>
 </template>
 

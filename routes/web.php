@@ -2,4 +2,4 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', \App\Http\Controllers\SpaController::class);
+Route::get('/', \App\Core\Http\Controllers\SpaController::class);

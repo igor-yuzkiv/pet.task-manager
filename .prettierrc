@@ -5,7 +5,11 @@
     "trailingComma": "es5",
     "printWidth": 120,
     "tabWidth": 4,
-    "plugins": ["prettier-plugin-tailwindcss", "@trivago/prettier-plugin-sort-imports"],
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports",
+        "prettier-plugin-tailwindcss"
+    ],
+    "tailwindStylesheet": "./resources/css/app.css",
     "importOrder": [
         "^vue(.*)$"
     ],
