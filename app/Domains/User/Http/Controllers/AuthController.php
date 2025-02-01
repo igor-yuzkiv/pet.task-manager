@@ -22,7 +22,7 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (! Auth::attempt($credentials)) {
+        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return response()->json([
                 'status'  => false,
                 'message' => 'Invalid credentials',
