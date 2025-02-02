@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class AuthControllerTest extends TestCase
 {
-    public function testLoginFailedDueToValidationErrors()
+    public function test_login_failed_due_to_validation_errors()
     {
         $this->post(
             'api/auth/login',
@@ -19,8 +19,7 @@ class AuthControllerTest extends TestCase
             ->assertInvalid(['email']);
     }
 
-
-    public function testLoginFailedDueToUserNotExists()
+    public function test_login_failed_due_to_user_not_exists()
     {
         $this->post(
             'api/auth/login',
@@ -32,7 +31,7 @@ class AuthControllerTest extends TestCase
             ->assertStatus(401);
     }
 
-    public function testLoginSuccess()
+    public function test_login_success()
     {
         $user = User::factory()->create();
 
@@ -46,7 +45,7 @@ class AuthControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-    public function testFetchCurrentUserSuccess()
+    public function test_fetch_current_user_success()
     {
         $user = User::factory()->create();
 
@@ -54,7 +53,7 @@ class AuthControllerTest extends TestCase
 
         $response->assertJson([
             'data' => [
-                'id'    => (string)$user->id,
+                'id'    => (string) $user->id,
                 'name'  => $user->name,
                 'email' => $user->email,
             ],
