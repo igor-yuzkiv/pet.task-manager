@@ -3,10 +3,13 @@
 namespace Tests\Feature\User;
 
 use App\Domains\User\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AuthControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_login_failed_due_to_validation_errors()
     {
         $this->post(
@@ -53,7 +56,7 @@ class AuthControllerTest extends TestCase
 
         $response->assertJson([
             'data' => [
-                'id'    => (string) $user->id,
+                'id'    => (string)$user->id,
                 'name'  => $user->name,
                 'email' => $user->email,
             ],
