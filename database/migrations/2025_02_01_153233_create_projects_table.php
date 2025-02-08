@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->string('status')->default(\App\Domains\Project\Enums\ProjectStatus::Active->value);
 
             $table->softDeletes();
             $table->timestamps();

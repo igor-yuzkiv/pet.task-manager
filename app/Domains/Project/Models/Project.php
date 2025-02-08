@@ -2,6 +2,7 @@
 
 namespace App\Domains\Project\Models;
 
+use App\Domains\Project\Enums\ProjectStatus;
 use App\Domains\User\Models\User;
 use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,11 @@ class Project extends Model
     protected $fillable = [
         'name',
         'description',
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => ProjectStatus::class,
     ];
 
     public function owners(): BelongsToMany

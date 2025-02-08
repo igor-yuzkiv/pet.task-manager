@@ -1,4 +1,4 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -13,8 +13,91 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                color: {
+                    white: '#FFFFFF',
+                    black: '#000000',
+
+                    gray: {
+                        50: '#f6f6f8',
+                        100: '#ececef',
+                        200: '#dcdce1',
+                        300: '#c3c4cd',
+                        400: '#a6a6b4',
+                        500: '#9190a1',
+                        600: '#817f91',
+                        700: '#757283',
+                        800: '#63606d',
+                        900: '#504f59',
+                        950: '#343338',
+                    },
+                    green: {
+                        50: '#f2fbf2',
+                        100: '#e2f6e3',
+                        200: '#c5edc7',
+                        300: '#98dd9c',
+                        400: '#50bd56',
+                        500: '#3ea944',
+                        600: '#2e8b33',
+                        700: '#286d2d',
+                        800: '#245727',
+                        900: '#1f4822',
+                        950: '#0c270f',
+                    },
+                    orange: {
+                        50: '#fffcea',
+                        100: '#fff5c5',
+                        200: '#ffeb85',
+                        300: '#ffda46',
+                        400: '#ffc71b',
+                        500: '#ffa500',
+                        600: '#e27c00',
+                        700: '#bb5502',
+                        800: '#984208',
+                        900: '#7c360b',
+                        950: '#481a00',
+                    },
+                    red: {
+                        50: '#fff3f1',
+                        100: '#ffe3df',
+                        200: '#ffcdc5',
+                        300: '#ffab9d',
+                        400: '#ff7a64',
+                        500: '#ff5033',
+                        600: '#ee3314',
+                        700: '#dd2b0e',
+                        800: '#a5240f',
+                        900: '#892413',
+                        950: '#4b0e04',
+                    },
+                    blue: {
+                        50: '#edf9ff',
+                        100: '#d8f0ff',
+                        200: '#b9e4ff',
+                        300: '#89d5ff',
+                        400: '#51bcff',
+                        500: '#289dff',
+                        600: '#117fff',
+                        700: '#0a66eb',
+                        800: '#1051bd',
+                        900: '#134895',
+                        950: '#0d2245',
+                    },
+                    purple: {
+                        50: '#f5f5fd',
+                        100: '#eeedfa',
+                        200: '#dfddf7',
+                        300: '#c7c1f1',
+                        400: '#ab9ee7',
+                        500: '#8d76dc',
+                        600: '#7b58cf',
+                        700: '#6b46bb',
+                        800: '#5a3a9d',
+                        900: '#4a3181',
+                        950: '#2e1e57',
+                    },
+                },
             },
         },
     },
     plugins: [],
-};
+}
