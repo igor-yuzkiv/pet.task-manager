@@ -56,7 +56,7 @@ class AuthControllerTest extends TestCase
 
         $response->assertJson([
             'data' => [
-                'id'    => (string)$user->id,
+                'id'    => (string) $user->id,
                 'name'  => $user->name,
                 'email' => $user->email,
             ],
