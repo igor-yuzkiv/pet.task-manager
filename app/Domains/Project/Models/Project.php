@@ -24,6 +24,7 @@ class Project extends Model
     ];
 
     protected $casts = [
+        'id'     => 'string',
         'status' => ProjectStatus::class,
     ];
 

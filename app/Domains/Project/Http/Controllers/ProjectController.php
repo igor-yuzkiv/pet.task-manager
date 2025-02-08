@@ -4,11 +4,15 @@ namespace App\Domains\Project\Http\Controllers;
 
 use App\Core\Http\Controllers\Controller;
 use App\Domains\Project\Models\Project;
+use App\Domains\Project\Resources\ProjectResource;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function index(Request $request) {}
+    public function index()
+    {
+        return ProjectResource::collection(Project::all());
+    }
 
     public function create() {}
 

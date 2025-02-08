@@ -4,6 +4,8 @@ namespace App\Domains\Project\Enums;
 
 enum ProjectStatus: string
 {
-    case Active = 'Active';
-    case Inactive = 'Inactive';
+    case Open = 'open';
+    case Active = 'active';
+    case InProgress = 'in_progress';
+    case Closed = 'closed';
 }

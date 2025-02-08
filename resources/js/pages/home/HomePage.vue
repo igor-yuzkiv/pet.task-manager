@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-
-onMounted(() => {
-    console.log('Home Page Mounted')
-})
+import { EProjectStatus, ProjectStatusMap } from '@/entities/project/project.types.ts'
+import StatusBadge from '@/components/status-badge/StatusBadge.vue'
 </script>
 
 <template>
-    <div>
-        <h1>Home Page</h1>
+    <div class="flex flex-grow flex-col">
+        <StatusBadge :value="EProjectStatus.in_progress" :status-map="ProjectStatusMap" />
     </div>
 </template>
 

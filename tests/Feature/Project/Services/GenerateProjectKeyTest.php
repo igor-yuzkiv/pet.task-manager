@@ -31,7 +31,7 @@ class GenerateProjectKeyTest extends TestCase
             'key'         => 'RPN-1',
             'name'        => 'Regular Project Name',
             'description' => 'Description',
-            'status'      => 'Active',
+            'status'      => 'active',
         ]);
 
         $key = $this->generateProjectKey->handle('Regular Project Name');

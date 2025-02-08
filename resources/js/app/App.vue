@@ -4,7 +4,6 @@ import Toast from 'primevue/toast'
 import { AppLayouts } from '@/app/router/app-router.ts'
 
 const route = useRoute()
-console.log(route.meta)
 </script>
 
 <template>
