@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+
+            $table->string('key')->unique();
             $table->string('name');
             $table->text('description');
             $table->string('status')->default(\App\Domains\Project\Enums\ProjectStatus::Active->value);
