@@ -4,3 +4,4 @@
 ./vendor/bin/pint --dirty
 npm run prettier:fix
 npm run lint
+php artisan test
