@@ -1,10 +1,10 @@
-export type SignInForm = {
+export type TSignInForm = {
     email: string
     password: string
     remember: boolean
 }
 
-export type User = {
+export type TUser = {
     id: string
     name: string
     email: string

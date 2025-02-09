@@ -1,6 +1,7 @@
 import Aura from '@primevue/themes/aura'
 import type { App } from 'vue'
 import PrimeVue from 'primevue/config'
+import ConfirmationService from 'primevue/confirmationservice'
 import ToastService from 'primevue/toastservice'
 
 export default function (app: App) {
@@ -17,5 +18,6 @@ export default function (app: App) {
         },
     })
 
+    app.use(ConfirmationService)
     app.use(ToastService)
 }

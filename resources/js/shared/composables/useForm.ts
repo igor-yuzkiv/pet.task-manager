@@ -8,8 +8,18 @@ export interface IFormOptions<T> {
 }
 
 export function useForm<T extends Record<string, unknown>>(options: IFormOptions<T>) {
+    const isVisible = ref(false)
     const data = ref<T>(options.initialValues)
-    const errors = ref<Partial<Record<keyof T, string>>>({})
+    const errors = ref<Partial<Record<keyof T, string | string[]>>>({})
+
+    function open(partialData: Partial<T> = {}) {
+        data.value = { ...options.initialValues, ...partialData }
+        isVisible.value = true
+    }
+
+    function close() {
+        isVisible.value = false
+    }
 
     async function validateForm() {
         if (!options.validationSchema) return true
@@ -38,10 +48,23 @@ export function useForm<T extends Record<string, unknown>>(options: IFormOptions
         }
     }
 
+    function getFieldError(field: keyof T): string | undefined {
+        const error = errors.value?.[field]
+        if (Array.isArray(error)) {
+            return error[0]
+        }
+
+        return error
+    }
+
     return {
+        isVisible,
         data,
         errors,
+        open,
+        close,
         validateForm,
         submitForm,
+        getFieldError,
     }
 }

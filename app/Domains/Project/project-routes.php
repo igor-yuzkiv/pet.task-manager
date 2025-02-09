@@ -8,5 +8,8 @@ Route::group(
     ],
     function () {
         Route::get('', 'index');
+        Route::post('', 'create');
+        Route::put('{project}', 'update');
+        Route::delete('{project}', 'destroy');
     }
 );

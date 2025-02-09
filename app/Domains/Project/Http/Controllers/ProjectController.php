@@ -3,28 +3,48 @@
 namespace App\Domains\Project\Http\Controllers;
 
 use App\Core\Http\Controllers\Controller;
+use App\Domains\Project\Http\Requests\ProjectRequest;
 use App\Domains\Project\Models\Project;
+use App\Domains\Project\Repository\ProjectRepositoryInterface;
 use App\Domains\Project\Resources\ProjectResource;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProjectController extends Controller
 {
-    public function index(Request $request)
+    public function __construct(
+        private readonly ProjectRepositoryInterface $projectRepository
+    ) {}
+
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return ProjectResource::collection(Project::paginate(
-            perPage: $request->input('per_page', 10)
-        ));
+        $projects = $this->projectRepository->paginate($request->input('per_page', 10));
+
+        return ProjectResource::collection($projects);
     }
 
-    public function create() {}
+    public function create(ProjectRequest $request): ProjectResource
+    {
+        $project = $this->projectRepository->create($request->validated());
 
-    public function store(Request $request) {}
+        return new ProjectResource($project);
+    }
 
-    public function show(Project $project) {}
+    public function update(Project $project, ProjectRequest $request): ProjectResource
+    {
+        $project = $this->projectRepository->update($project, $request->validated());
 
-    public function edit(Project $project) {}
+        return new ProjectResource($project);
+    }
 
-    public function update(Request $request, Project $project) {}
+    public function destroy(Project $project): JsonResponse
+    {
+        $isDeleted = $project->delete();
 
-    public function destroy(Project $project) {}
+        return response()->json([
+            'status'  => $isDeleted,
+            'message' => $isDeleted ? 'Project deleted' : 'Failed to delete project',
+        ], $isDeleted ? 200 : 400);
+    }
 }

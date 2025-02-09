@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { AxiosError } from 'axios'
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
-import type { SignInForm } from '@/entities/user/user.types.ts'
+import type { TSignInForm } from '@/entities/user/user.types.ts'
 import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
 import InputGroup from 'primevue/inputgroup'
@@ -14,11 +13,12 @@ import { AppRouters } from '@/app/router/app-router.ts'
 import { login } from '@/entities/user/user.api.ts'
 import { useForm } from '@/shared/composables/useForm.ts'
 import { useToast } from '@/shared/composables/useToast.ts'
+import ApiError from '@/shared/services/api/ApiError.ts'
 
 const toast = useToast()
 const router = useRouter()
 
-const form = useForm<SignInForm>({
+const form = useForm<TSignInForm>({
     initialValues: {
         email: '',
         password: '',
@@ -33,12 +33,7 @@ const form = useForm<SignInForm>({
             await login(data)
             await router.push({ name: AppRouters.home.name })
         } catch (error) {
-            const message =
-                error instanceof AxiosError && error.response?.status === 401
-                    ? 'Invalid email or password'
-                    : 'Something went wrong. Please try again later'
-
-            toast.error(message)
+            toast.error(error instanceof ApiError ? error.displayMessage : 'An error occurred. Please try again later.')
         }
     },
 })
@@ -61,8 +56,8 @@ const form = useForm<SignInForm>({
                     :invlide="true"
                 />
             </InputGroup>
-            <Message v-if="form.errors.value.email" severity="error" variant="simple" size="small">
-                {{ form.errors.value.email }}
+            <Message v-if="form.getFieldError('email')" severity="error" variant="simple" size="small">
+                {{ form.getFieldError('email') }}
             </Message>
         </div>
 

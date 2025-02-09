@@ -1,11 +1,17 @@
 import type { StatusMap } from '@/shared/types/status.types.ts'
 
-export type Project = {
+export type TProject = {
     id: string
     key: string
     name: string
     description: string
     status: string
+}
+
+export type TProjectForm = {
+    id?: string
+    name: string
+    description: string
 }
 
 export enum EProjectStatus {
