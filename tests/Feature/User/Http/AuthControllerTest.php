@@ -7,6 +7,20 @@ use Tests\TestCase;
 
 class AuthControllerTest extends TestCase
 {
+    public function test_login_success()
+    {
+        $user = User::factory()->create();
+
+        $this->post(
+            'api/auth/login',
+            [
+                'email'    => $user->email,
+                'password' => 'password',
+            ]
+        )
+            ->assertStatus(200);
+    }
+
     public function test_login_failed_due_to_validation_errors()
     {
         $this->post(
@@ -31,20 +45,6 @@ class AuthControllerTest extends TestCase
             ->assertStatus(401);
     }
 
-    public function test_login_success()
-    {
-        $user = User::factory()->create();
-
-        $this->post(
-            'api/auth/login',
-            [
-                'email'    => $user->email,
-                'password' => 'password',
-            ]
-        )
-            ->assertStatus(200);
-    }
-
     public function test_fetch_current_user_success()
     {
         $user = User::factory()->create();
@@ -58,5 +58,10 @@ class AuthControllerTest extends TestCase
                 'email' => $user->email,
             ],
         ], true);
+    }
+
+    public function test_fetch_current_user_if_unauthenticated()
+    {
+        $this->get('api/auth/me')->assertStatus(401);
     }
 }

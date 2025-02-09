@@ -7,7 +7,7 @@ Route::group(
         'controller' => \App\Domains\User\Http\Controllers\AuthController::class,
     ],
     function () {
-        Route::post('login', 'login')->withoutMiddleware(['auth']);
-        Route::get('me', 'me');
+        Route::post('login', 'login')->withoutMiddleware(['auth'])->name('api.auth.login');
+        Route::get('me', 'me')->name('api.auth.me');
     }
 );

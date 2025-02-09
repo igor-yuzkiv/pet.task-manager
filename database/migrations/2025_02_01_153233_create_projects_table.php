@@ -13,7 +13,7 @@ return new class extends Migration
 
             $table->string('key')->unique();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('status')->default(\App\Domains\Project\Enums\ProjectStatus::Active->value);
 
             $table->softDeletes();
