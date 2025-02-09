@@ -6,7 +6,6 @@ import type { TProject, TProjectForm } from '@/entities/project/project.types.ts
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import Paginator from 'primevue/paginator'
-import { Icon } from '@iconify/vue'
 import { AppRouters } from '@/app/router/app-router.ts'
 import projectApi from '@/entities/project/project.api.ts'
 import { useConfirm } from '@/shared/composables/useConfirm.ts'
@@ -94,17 +93,8 @@ onMounted(() => {
         <ProjectTable with-actions :projects="projects" @row:click="onRowClick">
             <template #actions="{ data }">
                 <div class="flex items-center justify-center gap-x-1">
-                    <Button text rounded severity="primary" @click="form.open(data)">
-                        <template #icon>
-                            <Icon icon="mdi:pencil" />
-                        </template>
-                    </Button>
-
-                    <Button text rounded severity="danger" @click="onClickDelete(data.id)">
-                        <template #icon>
-                            <Icon icon="mdi:trash" />
-                        </template>
-                    </Button>
+                    <Button text rounded severity="primary" @click="form.open(data)" icon="pi pi-pencil" />
+                    <Button text rounded severity="danger" @click="onClickDelete(data.id)" icon="pi pi-trash" />
                 </div>
             </template>
         </ProjectTable>
