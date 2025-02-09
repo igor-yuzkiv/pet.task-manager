@@ -20,8 +20,9 @@ export default class ApiError extends Error {
     error: AxiosError
 
     constructor(error: AxiosError) {
-        super()
+        super(error.message || DEFAULT_MESSAGE)
 
+        this.name = 'ApiError'
         this.error = error
     }
 
@@ -29,19 +30,23 @@ export default class ApiError extends Error {
         return this.error.response?.status
     }
 
+    get isValidationError(): boolean {
+        return this.status === 422
+    }
+
     get response(): ErrorResponseData | undefined {
         return this.error.response?.data as ErrorResponseData
     }
 
+    get validationErrors(): Record<string, unknown> | undefined {
+        return this.isValidationError ? (this.response?.errors as Record<string, unknown>) : undefined
+    }
+
     get displayMessage(): string {
-        if (this.response?.message) {
+        if (this.isValidationError && this.response?.message) {
             return this.response.message
         }
 
-        if (this.status && this.status in STATUS_CODE_MESSAGES) {
-            return STATUS_CODE_MESSAGES[this.status]
-        }
-
-        return DEFAULT_MESSAGE
+        return STATUS_CODE_MESSAGES[this.status ?? 0] ?? DEFAULT_MESSAGE
     }
 }

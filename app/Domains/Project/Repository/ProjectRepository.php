@@ -24,7 +24,11 @@ class ProjectRepository implements ProjectRepositoryInterface
     public function create(array $data): Project
     {
         $project = new Project($data);
-        $project->key = $this->generateProjectKey($project->name);
+
+        if (empty($project->key)) {
+            $project->key = $this->generateProjectKey($project->name);
+        }
+
         $project->status = ProjectStatus::Open;
         $project->save();
 

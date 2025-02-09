@@ -30,6 +30,7 @@ function handleError(error: Error | unknown) {
 const form = useForm<TProjectForm>({
     initialValues: {
         id: undefined,
+        key: null,
         name: '',
         description: '',
     },
@@ -48,7 +49,17 @@ const form = useForm<TProjectForm>({
             form.close()
             await loadProjects()
         } catch (error) {
-            handleError(error)
+            if (!(error instanceof ApiError)) {
+                toast.error('An error occurred. Please try again later.')
+                return
+            }
+
+            if (error.isValidationError && error.validationErrors) {
+                form.setErrors(error.validationErrors)
+                return
+            }
+
+            toast.error(error.displayMessage)
         }
     },
 })

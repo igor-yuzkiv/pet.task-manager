@@ -21,6 +21,18 @@ export function useForm<T extends Record<string, unknown>>(options: IFormOptions
         isVisible.value = false
     }
 
+    function setErrors(data: Record<string, string[]>) {
+        if (!data) {
+            return
+        }
+
+        for (const key in data) {
+            if (data[key] && key in options.initialValues) {
+                errors.value[key] = data[key]
+            }
+        }
+    }
+
     async function validateForm() {
         if (!options.validationSchema) return true
 
@@ -63,6 +75,7 @@ export function useForm<T extends Record<string, unknown>>(options: IFormOptions
         errors,
         open,
         close,
+        setErrors,
         validateForm,
         submitForm,
         getFieldError,

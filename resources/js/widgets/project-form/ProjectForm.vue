@@ -31,6 +31,10 @@ const fieldError = (field: keyof TProjectForm) => {
             <InputText v-model="formData.name" />
         </InputContainer>
 
+        <InputContainer label="Key" :error="fieldError('key')">
+            <InputText v-model="formData.key" />
+        </InputContainer>
+
         <InputContainer label="Description" :error="fieldError('description')">
             <TiptapEditor v-model="formData.description" />
         </InputContainer>

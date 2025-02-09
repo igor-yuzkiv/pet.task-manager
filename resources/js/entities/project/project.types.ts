@@ -11,6 +11,7 @@ export type TProject = {
 export type TProjectForm = {
     id?: string
     name: string
+    key: string | null
     description: string
 }
 
