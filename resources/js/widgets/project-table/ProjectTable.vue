@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProjectStatusMap, type TProject } from '@/entities/project/project.types.ts'
+import { type TProject, TProjectStatusMap } from '@/entities/project/project.types.ts'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import StatusBadge from '@/shared/components/status-badge/StatusBadge.vue'
@@ -30,7 +30,7 @@ defineEmits<{
         <Column field="name" header="Name"></Column>
         <Column field="status" header="Status">
             <template #body="{ data }">
-                <StatusBadge :value="data.status" :status-map="ProjectStatusMap" />
+                <StatusBadge :value="data.status" :status-map="TProjectStatusMap" />
             </template>
         </Column>
     </DataTable>

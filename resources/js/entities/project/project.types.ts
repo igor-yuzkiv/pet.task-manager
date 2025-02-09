@@ -21,7 +21,7 @@ export enum EProjectStatus {
     closed = 'closed',
 }
 
-export const ProjectStatusMap: StatusMap<EProjectStatus> = {
+export const TProjectStatusMap: StatusMap<EProjectStatus> = {
     [EProjectStatus.open]: {
         label: 'Open',
         color: '#289dff',
