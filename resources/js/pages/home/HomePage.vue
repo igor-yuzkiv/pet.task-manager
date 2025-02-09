@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import type { Project } from '@/entities/project/project.types.ts'
 import Paginator from 'primevue/paginator'
+import { AppRouters } from '@/app/router/app-router.ts'
 import projectApi from '@/entities/project/project.api.ts'
 import { usePagination } from '@/shared/composables/usePagination.ts'
 import { ProjectTable } from '@/widgets/project-table'
+
+const router = useRouter()
 
 const projects = ref<Project[]>([])
 const pagination = usePagination(loadProjects)
@@ -16,6 +20,10 @@ async function loadProjects() {
     })
 }
 
+function onRowClick(project: Project) {
+    router.push({ name: AppRouters.projectDetails.name, params: { id: project.id } })
+}
+
 onMounted(() => {
     loadProjects()
 })
@@ -23,7 +31,7 @@ onMounted(() => {
 
 <template>
     <div class="flex flex-grow flex-col">
-        <ProjectTable :projects="projects" />
+        <ProjectTable :projects="projects" @row:click="onRowClick" />
         <Paginator
             :total-records="pagination.total.value"
             :rows="pagination.perPage.value"

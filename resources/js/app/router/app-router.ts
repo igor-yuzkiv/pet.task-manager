@@ -1,5 +1,4 @@
 import { defineAsyncComponent } from 'vue'
-import authMiddleware from '@/app/router/middleware/auth.middleware.ts'
 
 export const AppLayouts = {
     auth: defineAsyncComponent(() => import('@/app/layouts/auth/AuthLayout.vue')),
@@ -10,18 +9,25 @@ export const AppRouters = {
     signIn: {
         name: 'auth.signIn',
         path: '/sign-in',
-        component: () => import('@/pages/auth/sign-in/SignInPage.vue'),
-        meta: {
-            layoutComponent: AppLayouts.auth,
-        },
     },
     home: {
         name: 'home',
         path: '/',
-        component: () => import('@/pages/home/HomePage.vue'),
-        meta: {
-            layoutComponent: AppLayouts.default,
-            middleware: authMiddleware,
-        },
+    },
+    projectDetails: {
+        name: 'project.details',
+        path: '/projects/:id',
+    },
+    projectOverview: {
+        name: 'project.detail.overview',
+        path: '/projects/:id',
+    },
+    projectTasks: {
+        name: 'project.detail.tasks',
+        path: '/projects/:id/tasks',
+    },
+    projectDocuments: {
+        name: 'project.detail.documents',
+        path: '/projects/:id/documents',
     },
 }
