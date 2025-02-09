@@ -2,8 +2,8 @@ import { defineAsyncComponent } from 'vue'
 import authMiddleware from '@/app/router/middleware/auth.middleware.ts'
 
 export const AppLayouts = {
-    auth: defineAsyncComponent(() => import('@/layouts/auth/AuthLayout.vue')),
-    default: defineAsyncComponent(() => import('@/layouts/default/DefaultLayout.vue')),
+    auth: defineAsyncComponent(() => import('@/app/layouts/auth/AuthLayout.vue')),
+    default: defineAsyncComponent(() => import('@/app/layouts/default/DefaultLayout.vue')),
 }
 
 export const AppRouters = {

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { fetchCurrentUser } from '@/entities/user/user.api.ts'
 import type { User } from '@/entities/user/user.types.ts'
+import { fetchCurrentUser } from '@/entities/user/user.api.ts'
 
 export const useAuthStore = defineStore('authStore', () => {
     const user = ref<User | null>()

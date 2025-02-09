@@ -1,4 +1,4 @@
-import type { StatusMap } from '@/types/status.types.ts'
+import type { StatusMap } from '@/shared/types/status.types.ts'
 
 export type Project = {
     id: string

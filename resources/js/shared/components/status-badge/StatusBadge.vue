@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { StatusMap } from '@/shared/types/status.types.ts'
 import Tag from 'primevue/tag'
-import type { StatusMap } from '@/types/status.types.ts'
 
 const props = defineProps<{
     value: string

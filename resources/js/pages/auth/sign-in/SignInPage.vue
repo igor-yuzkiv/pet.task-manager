@@ -2,6 +2,7 @@
 import { AxiosError } from 'axios'
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
+import type { SignInForm } from '@/entities/user/user.types.ts'
 import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
 import InputGroup from 'primevue/inputgroup'
@@ -11,9 +12,8 @@ import Message from 'primevue/message'
 import { Icon } from '@iconify/vue'
 import { AppRouters } from '@/app/router/app-router.ts'
 import { login } from '@/entities/user/user.api.ts'
-import type { SignInForm } from '@/entities/user/user.types.ts'
-import { useForm } from '@/composables/useForm.ts'
-import { useToast } from '@/composables/useToast.ts'
+import { useForm } from '@/shared/composables/useForm.ts'
+import { useToast } from '@/shared/composables/useToast.ts'
 
 const toast = useToast()
 const router = useRouter()

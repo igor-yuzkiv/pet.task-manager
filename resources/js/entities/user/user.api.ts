@@ -1,5 +1,5 @@
 import type { SignInForm, User } from '@/entities/user/user.types.ts'
-import { apiClient } from '@/services/api.client.ts'
+import { apiClient } from '@/shared/services/api.client.ts'
 
 export async function login(data: SignInForm): Promise<boolean> {
     return apiClient.post('auth/login', data).then(({ data }) => Boolean(data?.status))

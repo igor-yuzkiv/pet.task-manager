@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return ProjectResource::collection(Project::all());
+        return ProjectResource::collection(Project::paginate(
+            perPage: $request->input('per_page', 10)
+        ));
     }
 
     public function create() {}
