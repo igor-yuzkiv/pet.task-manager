@@ -4,7 +4,7 @@ namespace App\Domains\Project\Repository;
 
 use App\Domains\Project\Enums\ProjectStatus;
 use App\Domains\Project\Models\Project;
-use App\Domains\Project\Services\GenerateProjectKey;
+use App\Utils\EntityKeyUtil;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProjectRepository implements ProjectRepositoryInterface
@@ -18,7 +18,7 @@ class ProjectRepository implements ProjectRepositoryInterface
 
     public function generateProjectKey(string $projectName): string
     {
-        return app(GenerateProjectKey::class)->handle($projectName);
+        return EntityKeyUtil::generateEntityUniqKey($projectName, new Project);
     }
 
     public function create(array $data): Project
