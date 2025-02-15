@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import type { TUser } from '@/entities/user/user.types.ts'
 import { fetchCurrentUser } from '@/entities/user/user.api.ts'
 
-export const useAuthStore = defineStore('authStore', () => {
+export const useAuthStore = defineStore('app.auth', () => {
     const user = ref<TUser | null>()
 
     async function checkIfAuthenticated(): Promise<boolean> {

@@ -14,6 +14,10 @@ export const AppRouters = {
         name: 'home',
         path: '/',
     },
+    projects: {
+        name: 'projects.list',
+        path: '/projects',
+    },
     projectDetails: {
         name: 'project.details',
         path: '/projects/:id',

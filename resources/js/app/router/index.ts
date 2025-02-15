@@ -20,6 +20,17 @@ const router = createRouter({
             meta: {
                 layoutComponent: AppLayouts.default,
                 middleware: authMiddleware,
+                title: 'Home',
+            },
+        },
+        {
+            name: AppRouters.projects.name,
+            path: AppRouters.projects.path,
+            component: () => import('@/pages/projects/ProjectsPage.vue'),
+            meta: {
+                layoutComponent: AppLayouts.default,
+                middleware: authMiddleware,
+                title: 'Projects',
             },
         },
 
