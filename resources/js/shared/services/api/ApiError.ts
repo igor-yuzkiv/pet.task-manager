@@ -38,8 +38,8 @@ export default class ApiError extends Error {
         return this.error.response?.data as ErrorResponseData
     }
 
-    get validationErrors(): Record<string, unknown> | undefined {
-        return this.isValidationError ? (this.response?.errors as Record<string, unknown>) : undefined
+    get validationErrors(): Record<string, string[]> | undefined {
+        return this.isValidationError ? (this.response?.errors as Record<string, string[]>) : undefined
     }
 
     get displayMessage(): string {
