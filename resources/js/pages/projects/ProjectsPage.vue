@@ -2,30 +2,36 @@
 import * as yup from 'yup'
 import { defineAsyncComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import type { TProject, TProjectForm } from '@/entities/project/project.types.ts'
+import { ProjectStatusMetadataMap, type TProject, type TProjectForm } from '@/entities/project/project.types.ts'
+import type { TEntityTableColumns } from '@/shared/components/entity-table/entity-table.types.ts'
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import Paginator from 'primevue/paginator'
 import { AppRouters } from '@/app/router/app-router.ts'
 import projectApi from '@/entities/project/project.api.ts'
+import { EntityTable } from '@/shared/components/entity-table'
+import EnumBadge from '@/shared/components/enum-badge/EnumBadge.vue'
 import { useConfirm } from '@/shared/composables/useConfirm.ts'
 import { useForm } from '@/shared/composables/useForm.ts'
 import { usePagination } from '@/shared/composables/usePagination.ts'
 import { useToast } from '@/shared/composables/useToast.ts'
 import ApiError from '@/shared/services/api/modules/ApiError.ts'
-import { ProjectsTable } from '@/widgets/projects-table'
 
 const AsyncProjectForm = defineAsyncComponent(() => import('@/widgets/project-form/ProjectForm.vue'))
 
+const isLoading = ref<boolean>(true)
 const router = useRouter()
 const toast = useToast()
 const confirm = useConfirm()
 const projects = ref<TProject[]>([])
 const pagination = usePagination(loadProjects)
 
-function handleError(error: Error | unknown) {
-    toast.error(error instanceof ApiError ? error.displayMessage : 'An error occurred. Please try again later.')
-}
+const tableColumns: TEntityTableColumns[] = [
+    { field: 'id', header: '', class: 'w-32 py-0' },
+    { field: 'key', header: 'Key', class: 'w-32 py-0' },
+    { field: 'name', header: 'Name', class: 'py-0' },
+    { field: 'status', header: 'Status', class: 'w-32 py-0' },
+]
 
 const form = useForm<TProjectForm>({
     initialValues: {
@@ -65,10 +71,14 @@ const form = useForm<TProjectForm>({
 })
 
 async function loadProjects() {
-    await projectApi.fetchList(pagination.queryParams.value).then(({ data, meta }) => {
-        projects.value = data
-        pagination.setFormResponseMeta(meta)
-    })
+    isLoading.value = true
+    await projectApi
+        .fetchList(pagination.queryParams.value)
+        .then(({ data, meta }) => {
+            projects.value = data
+            pagination.setFormResponseMeta(meta)
+        })
+        .finally(() => (isLoading.value = false))
 }
 
 async function onClickDelete(id: string) {
@@ -79,7 +89,14 @@ async function onClickDelete(id: string) {
     confirm.require({
         message: 'Are you sure you want to delete this project?',
         accept: async () => {
-            await projectApi.delete(id).then(loadProjects).catch(handleError)
+            await projectApi
+                .delete(id)
+                .then(loadProjects)
+                .catch((error) => {
+                    toast.error(
+                        error instanceof ApiError ? error.displayMessage : 'An error occurred. Please try again later.'
+                    )
+                })
         },
     })
 }
@@ -101,14 +118,17 @@ onMounted(() => {
             </div>
         </div>
 
-        <ProjectsTable with-actions :projects="projects" @row:click="onRowClick">
-            <template #actions="{ data }">
+        <EntityTable :columns="tableColumns" :items="projects" :is-loading="isLoading" @row:click="onRowClick">
+            <template #column:id="{ data }">
                 <div class="flex items-center justify-center gap-x-1">
                     <Button text rounded severity="primary" @click="form.open(data)" icon="pi pi-pencil" />
                     <Button text rounded severity="danger" @click="onClickDelete(data.id)" icon="pi pi-trash" />
                 </div>
             </template>
-        </ProjectsTable>
+            <template #column:status="{ data }">
+                <EnumBadge :value="data.status" :status-map="ProjectStatusMetadataMap" class="w-full" />
+            </template>
+        </EntityTable>
 
         <Paginator
             :total-records="pagination.total.value"

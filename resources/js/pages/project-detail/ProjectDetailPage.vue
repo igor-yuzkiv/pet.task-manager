@@ -65,7 +65,7 @@ provide(ProjectDetailsSymbol, project)
             </div>
         </template>
         <div class="flex h-full w-full flex-col p-2" v-if="project">
-            <router-view></router-view>
+            <router-view />
         </div>
     </DefaultLayout>
 </template>
