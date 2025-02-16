@@ -28,8 +28,7 @@ export abstract class EntityApi<T> {
             ...resolveFiltersQuery(filters || []),
         }).toString()
 
-        const url = query ? `${this.baseUrl}?${queryString}` : this.baseUrl
-        return this.apiClient.get(url).then((response) => response.data)
+        return this.apiClient.get(`${this.baseUrl}?${queryString}`).then((response) => response.data)
     }
 
     async fetchById(id: string): Promise<T> {
