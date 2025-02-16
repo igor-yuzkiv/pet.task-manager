@@ -2,15 +2,15 @@
 
 namespace App\Domains\Project\Models;
 
-use App\Core\Libraries\EloquentFilter\Filters\IntegerFilter;
-use App\Core\Libraries\EloquentFilter\Filters\IsNotNullFilter;
-use App\Core\Libraries\EloquentFilter\Filters\IsNullFilter;
-use App\Core\Libraries\EloquentFilter\Filters\TextFilter;
-use App\Core\Libraries\EloquentFilter\FiltersAttribute;
-use App\Core\Libraries\EloquentFilter\HasFilters;
 use App\Domains\Project\Enums\ProjectStatus;
 use App\Domains\Task\Models\Task;
 use App\Domains\User\Models\User;
+use App\Libraries\EloquentFilter\Filters\IntegerFilter;
+use App\Libraries\EloquentFilter\Filters\IsNotNullFilter;
+use App\Libraries\EloquentFilter\Filters\IsNullFilter;
+use App\Libraries\EloquentFilter\Filters\TextFilter;
+use App\Libraries\EloquentFilter\FiltersAttribute;
+use App\Libraries\EloquentFilter\HasFilters;
 use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

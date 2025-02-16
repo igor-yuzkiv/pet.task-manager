@@ -3,7 +3,7 @@
 namespace App\Core\Providers;
 
 use App\Core\Console\Commands\DebugCommand;
-use App\Core\Libraries\EloquentFilter\EloquentFiltersResolver;
+use App\Libraries\EloquentFilter\EloquentFiltersResolver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

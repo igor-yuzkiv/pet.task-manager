@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Libraries\EloquentFilter;
+namespace App\Libraries\EloquentFilter;
 
 /**
  * @example

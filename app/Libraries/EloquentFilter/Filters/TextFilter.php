@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Libraries\EloquentFilter\Filters;
+namespace App\Libraries\EloquentFilter\Filters;
 
-use App\Core\Libraries\EloquentFilter\EloquentFilter;
-use App\Core\Libraries\EloquentFilter\MatchMode;
+use App\Libraries\EloquentFilter\EloquentFilter;
+use App\Libraries\EloquentFilter\MatchMode;
 use Illuminate\Database\Eloquent\Builder;
 
 class TextFilter extends EloquentFilter

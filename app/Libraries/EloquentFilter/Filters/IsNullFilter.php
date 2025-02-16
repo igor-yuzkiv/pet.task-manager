@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Core\Libraries\EloquentFilter\Filters;
+namespace App\Libraries\EloquentFilter\Filters;
 
-use App\Core\Libraries\EloquentFilter\EloquentFilter;
+use App\Libraries\EloquentFilter\EloquentFilter;
 use Illuminate\Database\Eloquent\Builder;
 
-class IsNotNullFilter extends EloquentFilter
+class IsNullFilter extends EloquentFilter
 {
     public function apply(Builder $query): Builder
     {
@@ -14,6 +14,6 @@ class IsNotNullFilter extends EloquentFilter
             return $query;
         }
 
-        return $query->whereNotNull($fieldName);
+        return $query->whereNull($fieldName);
     }
 }
