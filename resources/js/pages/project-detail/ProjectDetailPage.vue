@@ -27,7 +27,7 @@ const project = ref<TProject>()
 
 async function loadProject() {
     try {
-        project.value = await projectApi.fetchProject(route.params.id as string)
+        project.value = await projectApi.fetchById(route.params.id as string)
     } catch (error) {
         if (error instanceof ApiError) {
             toast.error(error.displayMessage)

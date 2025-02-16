@@ -3,6 +3,7 @@
 namespace App\Domains\Project\Resources;
 
 use App\Domains\Project\Models\Project;
+use App\Domains\Task\Resources\TaskResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,6 +18,8 @@ class ProjectResource extends JsonResource
             'name'        => $this->name,
             'description' => $this->description,
             'status'      => $this->status,
+
+            'tasks' => TaskResource::collection($this->whenLoaded('tasks')),
         ];
     }
 }

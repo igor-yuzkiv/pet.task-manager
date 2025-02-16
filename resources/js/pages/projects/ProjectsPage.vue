@@ -13,7 +13,7 @@ import { useForm } from '@/shared/composables/useForm.ts'
 import { usePagination } from '@/shared/composables/usePagination.ts'
 import { useToast } from '@/shared/composables/useToast.ts'
 import ApiError from '@/shared/services/api/ApiError.ts'
-import { ProjectTable } from '@/widgets/project-table'
+import { ProjectsTable } from '@/widgets/projects-table'
 
 const AsyncProjectForm = defineAsyncComponent(() => import('@/widgets/project-form/ProjectForm.vue'))
 
@@ -29,8 +29,8 @@ function handleError(error: Error | unknown) {
 
 const form = useForm<TProjectForm>({
     initialValues: {
-        id: undefined,
-        key: null,
+        id: '',
+        key: '',
         name: '',
         description: '',
     },
@@ -41,9 +41,9 @@ const form = useForm<TProjectForm>({
     submit: async (data) => {
         try {
             if (data.id) {
-                await projectApi.updateProject(data.id, data)
+                await projectApi.update(data.id, data)
             } else {
-                await projectApi.createProject(data)
+                await projectApi.create(data)
             }
 
             form.close()
@@ -65,7 +65,7 @@ const form = useForm<TProjectForm>({
 })
 
 async function loadProjects() {
-    await projectApi.fetchProjects(pagination.queryParams.value).then(({ data, meta }) => {
+    await projectApi.fetchList(pagination.queryParams.value).then(({ data, meta }) => {
         projects.value = data
         pagination.setFormResponseMeta(meta)
     })
@@ -79,7 +79,7 @@ async function onClickDelete(id: string) {
     confirm.require({
         message: 'Are you sure you want to delete this project?',
         accept: async () => {
-            await projectApi.deleteProject(id).then(loadProjects).catch(handleError)
+            await projectApi.delete(id).then(loadProjects).catch(handleError)
         },
     })
 }
@@ -101,14 +101,14 @@ onMounted(() => {
             </div>
         </div>
 
-        <ProjectTable with-actions :projects="projects" @row:click="onRowClick">
+        <ProjectsTable with-actions :projects="projects" @row:click="onRowClick">
             <template #actions="{ data }">
                 <div class="flex items-center justify-center gap-x-1">
                     <Button text rounded severity="primary" @click="form.open(data)" icon="pi pi-pencil" />
                     <Button text rounded severity="danger" @click="onClickDelete(data.id)" icon="pi pi-trash" />
                 </div>
             </template>
-        </ProjectTable>
+        </ProjectsTable>
 
         <Paginator
             :total-records="pagination.total.value"

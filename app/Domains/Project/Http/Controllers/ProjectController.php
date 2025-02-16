@@ -31,7 +31,7 @@ class ProjectController extends Controller
         return ProjectResource::make($project);
     }
 
-    public function create(ProjectRequest $request): ProjectResource
+    public function store(ProjectRequest $request): ProjectResource
     {
         $project = $this->projectRepository->create($request->validated());
 

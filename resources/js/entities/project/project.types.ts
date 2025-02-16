@@ -1,3 +1,4 @@
+import type { TTask } from '@/entities/task/task.types.ts'
 import type { StatusMap } from '@/shared/types/status.types.ts'
 
 export type TProject = {
@@ -6,14 +7,11 @@ export type TProject = {
     name: string
     description: string
     status: string
+
+    tasks?: TTask[]
 }
 
-export type TProjectForm = {
-    id?: string
-    name: string
-    key: string | null
-    description: string
-}
+export type TProjectForm = Partial<Pick<TProject, 'id' | 'key' | 'name' | 'description' | 'status'>>
 
 export enum EProjectStatus {
     open = 'open',
