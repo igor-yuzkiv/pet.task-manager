@@ -13,7 +13,7 @@ import { AppRouters } from '@/app/router/app-router.ts'
 import { login } from '@/entities/user/user.api.ts'
 import { useForm } from '@/shared/composables/useForm.ts'
 import { useToast } from '@/shared/composables/useToast.ts'
-import ApiError from '@/shared/services/api/ApiError.ts'
+import ApiError from '@/shared/services/api/modules/ApiError.ts'
 
 const toast = useToast()
 const router = useRouter()

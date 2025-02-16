@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { type TProject, TProjectStatusMap } from '@/entities/project/project.types.ts'
+import { ProjectStatusMetadataMap, type TProject } from '@/entities/project/project.types.ts'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
-import StatusBadge from '@/shared/components/status-badge/StatusBadge.vue'
+import EnumBadge from '@/shared/components/enum-badge/EnumBadge.vue'
 
 defineProps({
     projects: {
@@ -30,7 +30,7 @@ defineEmits<{
         <Column field="name" header="Name"></Column>
         <Column field="status" header="Status">
             <template #body="{ data }">
-                <StatusBadge :value="data.status" :status-map="TProjectStatusMap" />
+                <EnumBadge :value="data.status" :status-map="ProjectStatusMetadataMap" />
             </template>
         </Column>
     </DataTable>

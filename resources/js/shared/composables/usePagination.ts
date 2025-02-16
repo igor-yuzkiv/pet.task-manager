@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue'
-import type { PaginateMetaResponse } from '@/shared/types/api.types.ts'
+import type { PaginateMetaResponse } from '@/shared/services/api/api.types.ts'
 import type { PageState } from 'primevue/paginator'
 
 export function usePagination(onChangeCallback: () => Promise<void>) {

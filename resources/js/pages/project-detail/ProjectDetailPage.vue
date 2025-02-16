@@ -10,7 +10,7 @@ import { AppRouters } from '@/app/router/app-router.ts'
 import projectApi from '@/entities/project/project.api.ts'
 import { ProjectDetailsSymbol } from '@/pages/project-detail/index.ts'
 import { useToast } from '@/shared/composables/useToast.ts'
-import ApiError from '@/shared/services/api/ApiError.ts'
+import ApiError from '@/shared/services/api/modules/ApiError.ts'
 
 const route = useRoute()
 const router = useRouter()

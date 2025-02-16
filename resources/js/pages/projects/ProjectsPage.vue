@@ -12,7 +12,7 @@ import { useConfirm } from '@/shared/composables/useConfirm.ts'
 import { useForm } from '@/shared/composables/useForm.ts'
 import { usePagination } from '@/shared/composables/usePagination.ts'
 import { useToast } from '@/shared/composables/useToast.ts'
-import ApiError from '@/shared/services/api/ApiError.ts'
+import ApiError from '@/shared/services/api/modules/ApiError.ts'
 import { ProjectsTable } from '@/widgets/projects-table'
 
 const AsyncProjectForm = defineAsyncComponent(() => import('@/widgets/project-form/ProjectForm.vue'))

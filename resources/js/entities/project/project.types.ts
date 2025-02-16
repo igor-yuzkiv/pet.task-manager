@@ -1,5 +1,5 @@
 import type { TTask } from '@/entities/task/task.types.ts'
-import type { StatusMap } from '@/shared/types/status.types.ts'
+import type { EnumMetadataMap } from '@/shared/types/enum-metadata.types.ts'
 
 export type TProject = {
     id: string
@@ -20,7 +20,7 @@ export enum EProjectStatus {
     closed = 'closed',
 }
 
-export const TProjectStatusMap: StatusMap<EProjectStatus> = {
+export const ProjectStatusMetadataMap: EnumMetadataMap<EProjectStatus> = {
     [EProjectStatus.open]: {
         label: 'Open',
         color: '#289dff',

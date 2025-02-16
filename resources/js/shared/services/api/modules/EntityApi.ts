@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios'
 import type { TProject } from '@/entities/project/project.types.ts'
-import type { PaginateMetaResponse } from '@/shared/types/api.types.ts'
+import type { PaginateMetaResponse } from '@/shared/services/api/api.types.ts'
 
 export abstract class EntityApi<T> {
     baseUrl: string
