@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { EnumMetadataMap } from '@/shared/types/enum-metadata.types.ts'
+import type { EnumMetadataMap } from '@/types/enum-metadata.types.ts'
 import Tag from 'primevue/tag'
 
 const props = defineProps<{

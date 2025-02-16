@@ -1,7 +1,7 @@
 import type { TProject } from '@/entities/project/project.types.ts'
 import type { TUser } from '@/entities/user/user.types.ts'
-import type { EnumMetadataMap } from '@/shared/types/enum-metadata.types.ts'
-import type { EPriority } from '@/shared/types/priority.types.ts'
+import type { EnumMetadataMap } from '@/types/enum-metadata.types.ts'
+import type { EPriority } from '@/types/priority.types.ts'
 
 export type TTask = {
     id: string

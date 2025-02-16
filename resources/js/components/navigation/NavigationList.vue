@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { TNavItem } from '@/widgets/navigation/navigation.types.ts'
-import NavigationListItem from '@/widgets/navigation/NavigationListItem.vue'
-import NavigationListSection from '@/widgets/navigation/NavigationListSection.vue'
+import type { TNavItem } from '@/components/navigation/navigation.types.ts'
+import NavigationListItem from '@/components/navigation/NavigationListItem.vue'
+import NavigationListSection from '@/components/navigation/NavigationListSection.vue'
 
 defineProps({
     items: {

@@ -1,4 +1,4 @@
-import type { EnumMetadataMap } from '@/shared/types/enum-metadata.types.ts'
+import type { EnumMetadataMap } from '@/types/enum-metadata.types.ts'
 
 export enum EPriority {
     low = 'low',

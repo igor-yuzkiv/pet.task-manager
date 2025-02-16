@@ -1,5 +1,5 @@
 import type { AxiosInstance } from 'axios'
-import type { PaginateMetaResponse } from '@/shared/services/api/api.types.ts'
+import type { PaginateMetaResponse } from '@/services/api/api.types.ts'
 
 function resolveFiltersQuery(filters: string[]): Record<string, string> {
     return filters && filters.length

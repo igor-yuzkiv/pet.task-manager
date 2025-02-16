@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { TNavItem } from '@/widgets/navigation/navigation.types.ts'
+import type { TNavItem } from '@/components/navigation/navigation.types.ts'
 import Panel from 'primevue/panel'
-import NavigationList from '@/widgets/navigation/NavigationList.vue'
+import NavigationList from '@/components/navigation/NavigationList.vue'
 
 defineProps({
     item: {

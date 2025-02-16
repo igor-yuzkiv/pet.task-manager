@@ -8,9 +8,9 @@ import Tabs from 'primevue/tabs'
 import DefaultLayout from '@/app/layouts/default/DefaultLayout.vue'
 import { AppRouters } from '@/app/router/app-router.ts'
 import projectApi from '@/entities/project/project.api.ts'
+import { useToast } from '@/composables/useToast.ts'
 import { ProjectDetailsSymbol } from '@/pages/project-detail/index.ts'
-import { useToast } from '@/shared/composables/useToast.ts'
-import ApiError from '@/shared/services/api/modules/ApiError.ts'
+import ApiError from '@/services/api/modules/ApiError.ts'
 
 const route = useRoute()
 const router = useRouter()

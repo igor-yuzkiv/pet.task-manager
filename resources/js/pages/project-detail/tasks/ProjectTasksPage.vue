@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { inject, onMounted, type Ref, ref } from 'vue'
+import type { TEntityTableColumns } from '@/components/entity-table/entity-table.types.ts'
 import type { TProject } from '@/entities/project/project.types.ts'
 import { TaskStatusMetadataMap, type TTask } from '@/entities/task/task.types.ts'
-import type { TEntityTableColumns } from '@/shared/components/entity-table/entity-table.types.ts'
-import { PriorityMetadataMap } from '@/shared/types/priority.types.ts'
+import { PriorityMetadataMap } from '@/types/priority.types.ts'
 import Paginator from 'primevue/paginator'
 import taskApi from '@/entities/task/task.api.ts'
+import { usePagination } from '@/composables/usePagination.ts'
+import { useToast } from '@/composables/useToast.ts'
+import { EntityTable } from '@/components/entity-table'
+import EnumBadge from '@/components/enum-badge/EnumBadge.vue'
 import { ProjectDetailsSymbol } from '@/pages/project-detail'
-import { EntityTable } from '@/shared/components/entity-table'
-import EnumBadge from '@/shared/components/enum-badge/EnumBadge.vue'
-import { usePagination } from '@/shared/composables/usePagination.ts'
-import { useToast } from '@/shared/composables/useToast.ts'
-import ApiError from '@/shared/services/api/modules/ApiError.ts'
+import ApiError from '@/services/api/modules/ApiError.ts'
 
 const toast = useToast()
 const project = inject<Ref<TProject>>(ProjectDetailsSymbol)

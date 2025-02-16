@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { TProjectForm } from '@/entities/project/project.types.ts'
 import InputText from 'primevue/inputtext'
-import InputContainer from '@/shared/components/input-container/InputContainer.vue'
-import TiptapEditor from '@/shared/components/tiptap-editor/TiptapEditor.vue'
+import InputContainer from '@/components/input-container/InputContainer.vue'
+import TiptapEditor from '@/components/tiptap-editor/TiptapEditor.vue'
 
 const props = defineProps<{
     errors?: Record<string, string | string[]>

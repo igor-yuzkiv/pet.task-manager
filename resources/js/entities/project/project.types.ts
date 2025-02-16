@@ -1,5 +1,5 @@
 import type { TTask } from '@/entities/task/task.types.ts'
-import type { EnumMetadataMap } from '@/shared/types/enum-metadata.types.ts'
+import type { EnumMetadataMap } from '@/types/enum-metadata.types.ts'
 
 export type TProject = {
     id: string

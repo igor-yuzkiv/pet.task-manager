@@ -1,5 +1,5 @@
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import type { TNavItem } from '@/widgets/navigation/navigation.types.ts'
+import type { TNavItem } from '@/components/navigation/navigation.types.ts'
 import { AppRouters } from '@/app/router/app-router.ts'
 
 export const DefaultLayoutMenu = [

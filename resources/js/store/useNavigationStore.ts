@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { TNavItem } from '@/widgets/navigation/navigation.types.ts'
+import type { TNavItem } from '@/components/navigation/navigation.types.ts'
 
 export const useNavigationStore = defineStore('app.navigation', () => {
     const items = ref<TNavItem[]>([])

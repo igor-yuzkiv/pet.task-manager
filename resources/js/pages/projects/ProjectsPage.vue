@@ -2,22 +2,22 @@
 import * as yup from 'yup'
 import { defineAsyncComponent, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import type { TEntityTableColumns } from '@/components/entity-table/entity-table.types.ts'
 import { ProjectStatusMetadataMap, type TProject, type TProjectForm } from '@/entities/project/project.types.ts'
-import type { TEntityTableColumns } from '@/shared/components/entity-table/entity-table.types.ts'
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import Paginator from 'primevue/paginator'
 import { AppRouters } from '@/app/router/app-router.ts'
 import projectApi from '@/entities/project/project.api.ts'
-import { EntityTable } from '@/shared/components/entity-table'
-import EnumBadge from '@/shared/components/enum-badge/EnumBadge.vue'
-import { useConfirm } from '@/shared/composables/useConfirm.ts'
-import { useForm } from '@/shared/composables/useForm.ts'
-import { usePagination } from '@/shared/composables/usePagination.ts'
-import { useToast } from '@/shared/composables/useToast.ts'
-import ApiError from '@/shared/services/api/modules/ApiError.ts'
+import { useConfirm } from '@/composables/useConfirm.ts'
+import { useForm } from '@/composables/useForm.ts'
+import { usePagination } from '@/composables/usePagination.ts'
+import { useToast } from '@/composables/useToast.ts'
+import { EntityTable } from '@/components/entity-table'
+import EnumBadge from '@/components/enum-badge/EnumBadge.vue'
+import ApiError from '@/services/api/modules/ApiError.ts'
 
-const AsyncProjectForm = defineAsyncComponent(() => import('@/widgets/project-form/ProjectForm.vue'))
+const AsyncProjectForm = defineAsyncComponent(() => import('@/components/project-form/ProjectForm.vue'))
 
 const isLoading = ref<boolean>(true)
 const router = useRouter()

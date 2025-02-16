@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Record<string, unknown>">
-import type { TEntityTableColumns } from '@/shared/components/entity-table/entity-table.types.ts'
+import type { TEntityTableColumns } from '@/components/entity-table/entity-table.types.ts'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import Skeleton from 'primevue/skeleton'

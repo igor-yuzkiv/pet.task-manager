@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import type { TNavItem } from '@/widgets/navigation/navigation.types.ts'
+import type { TNavItem } from '@/components/navigation/navigation.types.ts'
 import { Icon } from '@iconify/vue'
 
 const props = defineProps({

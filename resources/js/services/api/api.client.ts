@@ -1,5 +1,5 @@
 import axios, { type AxiosResponse } from 'axios'
-import ApiError from '@/shared/services/api/modules/ApiError.ts'
+import ApiError from '@/services/api/modules/ApiError.ts'
 
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,

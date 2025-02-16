@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { NavigationSidebar } from 'resources/js/components/navigation'
 import { useRoute } from 'vue-router'
 import Avatar from 'primevue/avatar'
 import Button from 'primevue/button'
 import { DefaultLayoutMenu } from '@/app/layouts/default/default-layout.menu.ts'
 import { useNavigationStore } from '@/store/useNavigationStore.ts'
-import { NavigationSidebar } from '@/widgets/navigation'
 
 const route = useRoute()
 const navigationStore = useNavigationStore()
