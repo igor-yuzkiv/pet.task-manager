@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { NavigationSidebar } from 'resources/js/components/navigation'
 import { useRoute } from 'vue-router'
 import Avatar from 'primevue/avatar'
 import Button from 'primevue/button'
 import { DefaultLayoutMenu } from '@/app/layouts/default/default-layout.menu.ts'
+import { NavigationSidebar } from '@/components/navigation'
 import { useNavigationStore } from '@/store/useNavigationStore.ts'
 
 const route = useRoute()
