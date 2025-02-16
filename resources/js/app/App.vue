@@ -2,15 +2,15 @@
 import { useRoute } from 'vue-router'
 import ConfirmDialog from 'primevue/confirmdialog'
 import Toast from 'primevue/toast'
-import { AppLayouts } from '@/app/router/app-router.ts'
 
 const route = useRoute()
 </script>
 
 <template>
-    <component :is="route.meta?.layoutComponent ?? AppLayouts.default">
+    <component v-if="route.meta?.layoutComponent" :is="route.meta?.layoutComponent">
         <router-view />
     </component>
+    <router-view v-else />
     <Toast />
     <ConfirmDialog />
 </template>

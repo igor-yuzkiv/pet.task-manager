@@ -19,7 +19,7 @@ const mini = defineModel<boolean>('mini')
         >
             <img src="@/assets/logo/logo.svg" alt="Logo" class="h-12 w-12" />
             <h1 v-if="!mini" class="text-2xl font-semibold">Brand</h1>
-            <Button v-if="!mini" icon="pi pi-bars" text @click="mini = true" />
+            <Button v-if="!mini" icon="pi pi-bars" text @click.prevent="mini = true" />
         </router-link>
         <NavigationList class="flex-1 p-3" :items="navItems" :mini="mini" />
     </aside>

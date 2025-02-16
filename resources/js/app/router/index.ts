@@ -41,7 +41,6 @@ const router = createRouter({
             redirect: { name: AppRouters.projectOverview.name },
             component: () => import('@/pages/project-detail/ProjectDetailPage.vue'),
             meta: {
-                layoutComponent: AppLayouts.default,
                 middleware: authMiddleware,
             },
             children: [

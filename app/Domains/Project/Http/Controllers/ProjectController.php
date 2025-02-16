@@ -24,6 +24,13 @@ class ProjectController extends Controller
         return ProjectResource::collection($projects);
     }
 
+    public function show(Project $project): ProjectResource
+    {
+        ProjectResource::withoutWrapping();
+
+        return ProjectResource::make($project);
+    }
+
     public function create(ProjectRequest $request): ProjectResource
     {
         $project = $this->projectRepository->create($request->validated());

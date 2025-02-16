@@ -10,6 +10,10 @@ export default {
         return apiClient.get(url).then((response) => response.data)
     },
 
+    async fetchProject(id: string): Promise<TProject> {
+        return await apiClient.get(`${baseUrl}/${id}`).then((response) => response.data)
+    },
+
     async createProject(data: TProjectForm): Promise<TProject> {
         return await apiClient.post(baseUrl, data)
     },
