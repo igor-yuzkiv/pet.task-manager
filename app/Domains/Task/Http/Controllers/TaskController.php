@@ -2,20 +2,25 @@
 
 namespace App\Domains\Task\Http\Controllers;
 
-use App\Core\Http\Controllers\Controller;
+use App\Core\Http\Controllers\ResourceController;
 use App\Domains\Task\Models\Task;
 use App\Domains\Task\Repository\TaskRepositoryInterface;
 use App\Domains\Task\Resources\TaskResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class TaskController extends Controller
+class TaskController extends ResourceController
 {
     public function __construct(private readonly TaskRepositoryInterface $taskRepository) {}
 
+    public function getModelClass(): string
+    {
+        return Task::class;
+    }
+
     public function index(Request $request): AnonymousResourceCollection
     {
-        $response = $this->taskRepository->paginate($request->input('per_page', 10));
+        $response = $this->taskRepository->paginate($this->getPerPage(), $this->getFilters());
 
         return TaskResource::collection($response);
     }

@@ -2,24 +2,28 @@
 
 namespace App\Domains\Project\Http\Controllers;
 
-use App\Core\Http\Controllers\Controller;
+use App\Core\Http\Controllers\ResourceController;
 use App\Domains\Project\Http\Requests\ProjectRequest;
 use App\Domains\Project\Models\Project;
 use App\Domains\Project\Repository\ProjectRepositoryInterface;
 use App\Domains\Project\Resources\ProjectResource;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ProjectController extends Controller
+class ProjectController extends ResourceController
 {
     public function __construct(
         private readonly ProjectRepositoryInterface $projectRepository
     ) {}
 
-    public function index(Request $request): AnonymousResourceCollection
+    public function getModelClass(): string
     {
-        $projects = $this->projectRepository->paginate($request->input('per_page', 10));
+        return Project::class;
+    }
+
+    public function index(): AnonymousResourceCollection
+    {
+        $projects = $this->projectRepository->paginate($this->getPerPage(), $this->getFilters());
 
         return ProjectResource::collection($projects);
     }

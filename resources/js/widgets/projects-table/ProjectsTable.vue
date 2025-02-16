@@ -21,16 +21,16 @@ defineEmits<{
 
 <template>
     <DataTable :value="projects" size="small" selectionMode="single" @row-click="$emit('row:click', $event.data)">
-        <Column field="id" v-if="withActions" class="w-12">
+        <Column field="id" v-if="withActions" class="w-32">
             <template #body="{ data }">
                 <slot name="actions" v-bind="{ data }"></slot>
             </template>
         </Column>
-        <Column field="key" header="Key" class="w-24" />
+        <Column field="key" header="Key" class="w-32" />
         <Column field="name" header="Name"></Column>
-        <Column field="status" header="Status">
+        <Column field="status" header="Status" class="w-32">
             <template #body="{ data }">
-                <EnumBadge :value="data.status" :status-map="ProjectStatusMetadataMap" />
+                <EnumBadge :value="data.status" :status-map="ProjectStatusMetadataMap" class="w-full" />
             </template>
         </Column>
     </DataTable>

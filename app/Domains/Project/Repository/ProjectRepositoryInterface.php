@@ -7,7 +7,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ProjectRepositoryInterface
 {
-    public function paginate(?int $perPage = null): LengthAwarePaginator;
+    public function paginate(?int $perPage = null, array $filters = []): LengthAwarePaginator;
 
     public function generateProjectKey(string $projectName): string;
 

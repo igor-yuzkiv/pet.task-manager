@@ -10,7 +10,9 @@ const route = useRoute()
     <component v-if="route.meta?.layoutComponent" :is="route.meta?.layoutComponent">
         <router-view />
     </component>
+
     <router-view v-else />
+
     <Toast />
     <ConfirmDialog />
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import Avatar from 'primevue/avatar'
 import Button from 'primevue/button'
 import { DefaultLayoutMenu } from '@/app/layouts/default/default-layout.menu.ts'
 import { useNavigationStore } from '@/store/useNavigationStore.ts'
@@ -9,24 +9,33 @@ import { NavigationSidebar } from '@/widgets/navigation'
 const route = useRoute()
 const navigationStore = useNavigationStore()
 navigationStore.setNavItems(DefaultLayoutMenu)
-
-const miniSidebar = ref<boolean>(false)
 </script>
 
 <template>
     <div class="flex h-screen w-full overflow-hidden">
-        <NavigationSidebar :nav-items="navigationStore.navigationItems" v-model:mini="miniSidebar" />
+        <NavigationSidebar :nav-items="navigationStore.navigationItems" v-model:mini="navigationStore.isMinimized" />
 
         <div class="flex flex-1 flex-col">
             <div
-                class="flex w-full shrink-0 items-center gap-x-3 border-b border-gray-200 px-3"
+                class="flex w-full shrink-0 items-center border-b border-gray-200 px-3"
                 style="height: var(--app-header-height)"
             >
-                <Button v-if="miniSidebar" icon="pi pi-bars" text @click="miniSidebar = false" />
+                <div class="flex flex-1 items-center gap-x-3">
+                    <Button
+                        v-if="navigationStore.isMinimized"
+                        icon="pi pi-bars"
+                        text
+                        @click="navigationStore.isMinimized = false"
+                    />
 
-                <slot name="header">
-                    <h1 class="text-lg font-bold" v-if="route.meta?.title">{{ route.meta?.title }}</h1>
-                </slot>
+                    <slot name="header">
+                        <h1 class="text-lg font-bold" v-if="route.meta?.title">{{ route.meta?.title }}</h1>
+                    </slot>
+                </div>
+
+                <div>
+                    <Avatar icon="pi pi-user" />
+                </div>
             </div>
 
             <main class="flex flex-grow flex-col overflow-auto">

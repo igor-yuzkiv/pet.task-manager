@@ -4,6 +4,7 @@ import type { TNavItem } from '@/widgets/navigation/navigation.types.ts'
 
 export const useNavigationStore = defineStore('app.navigation', () => {
     const items = ref<TNavItem[]>([])
+    const isMinimized = ref(false)
 
     function setNavItems(navItems: TNavItem[]): void {
         items.value = navItems
@@ -12,5 +13,6 @@ export const useNavigationStore = defineStore('app.navigation', () => {
     return {
         navigationItems: items,
         setNavItems,
+        isMinimized,
     }
 })

@@ -9,9 +9,10 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProjectRepository implements ProjectRepositoryInterface
 {
-    public function paginate(?int $perPage = null): LengthAwarePaginator
+    public function paginate(?int $perPage = null, array $filters = []): LengthAwarePaginator
     {
         return Project::query()
+            ->filter($filters)
             ->orderBy('updated_at', 'desc')
             ->paginate(perPage: $perPage ?? 10);
     }

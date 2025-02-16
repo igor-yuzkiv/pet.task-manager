@@ -64,7 +64,7 @@ provide(ProjectDetailsSymbol, project)
                 </Tabs>
             </div>
         </template>
-        <div class="flex h-full w-full flex-col p-2">
+        <div class="flex h-full w-full flex-col p-2" v-if="project">
             <router-view></router-view>
         </div>
     </DefaultLayout>

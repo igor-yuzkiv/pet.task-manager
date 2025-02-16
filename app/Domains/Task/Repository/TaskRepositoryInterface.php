@@ -6,5 +6,5 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface TaskRepositoryInterface
 {
-    public function paginate(?int $perPage = null): LengthAwarePaginator;
+    public function paginate(?int $perPage = null, array $filters = []): LengthAwarePaginator;
 }

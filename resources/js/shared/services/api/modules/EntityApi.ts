@@ -1,6 +1,11 @@
 import type { AxiosInstance } from 'axios'
-import type { TProject } from '@/entities/project/project.types.ts'
 import type { PaginateMetaResponse } from '@/shared/services/api/api.types.ts'
+
+function resolveFiltersQuery(filters: string[]): Record<string, string> {
+    return filters && filters.length
+        ? Object.fromEntries(filters.map((filter, index) => [`filters[${index}]`, filter]))
+        : {}
+}
 
 export abstract class EntityApi<T> {
     baseUrl: string
@@ -11,8 +16,19 @@ export abstract class EntityApi<T> {
         this.apiClient = apiClient
     }
 
-    async fetchList(query?: Record<string, string>): Promise<{ data: TProject[]; meta: PaginateMetaResponse }> {
-        const url = query ? `${this.baseUrl}?${new URLSearchParams(query).toString()}` : this.baseUrl
+    async fetchList(
+        query?: Record<string, string>,
+        filters?: string[]
+    ): Promise<{
+        data: T[]
+        meta: PaginateMetaResponse
+    }> {
+        const queryString = new URLSearchParams({
+            ...(query || {}),
+            ...resolveFiltersQuery(filters || []),
+        }).toString()
+
+        const url = query ? `${this.baseUrl}?${queryString}` : this.baseUrl
         return this.apiClient.get(url).then((response) => response.data)
     }
 

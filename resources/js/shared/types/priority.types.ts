@@ -6,7 +6,7 @@ export enum EPriority {
     high = 'high',
 }
 
-export const TPriorityMap: EnumMetadataMap<EPriority> = {
+export const PriorityMetadataMap: EnumMetadataMap<EPriority> = {
     [EPriority.low]: {
         label: 'Low',
         color: '#50bd56',
