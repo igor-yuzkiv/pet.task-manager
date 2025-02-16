@@ -2,6 +2,12 @@
 
 namespace App\Domains\Project\Models;
 
+use App\Core\Libraries\EloquentFilter\Filters\IntegerFilter;
+use App\Core\Libraries\EloquentFilter\Filters\IsNotNullFilter;
+use App\Core\Libraries\EloquentFilter\Filters\IsNullFilter;
+use App\Core\Libraries\EloquentFilter\Filters\TextFilter;
+use App\Core\Libraries\EloquentFilter\FiltersAttribute;
+use App\Core\Libraries\EloquentFilter\HasFilters;
 use App\Domains\Project\Enums\ProjectStatus;
 use App\Domains\Task\Models\Task;
 use App\Domains\User\Models\User;
@@ -12,9 +18,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+#[FiltersAttribute([
+    'text'      => TextFilter::class,
+    'integer'   => IntegerFilter::class,
+    'isNull'    => IsNullFilter::class,
+    'isNotNull' => IsNotNullFilter::class,
+])]
 class Project extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, HasFilters, SoftDeletes;
 
     protected $table = 'projects';
 
